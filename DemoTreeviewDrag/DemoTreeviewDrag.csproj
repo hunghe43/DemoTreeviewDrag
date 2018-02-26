@@ -47,12 +47,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\ACLineSegments.cs" />
+    <Compile Include="Entity\Bays.cs" />
+    <Compile Include="Entity\Breakers.cs" />
+    <Compile Include="Entity\Busbars.cs" />
+    <Compile Include="Entity\ConnectivityNodes.cs" />
+    <Compile Include="Entity\CurrentTransformers.cs" />
+    <Compile Include="Entity\Disconnectors.cs" />
+    <Compile Include="Entity\EnergyConsumers.cs" />
+    <Compile Include="Entity\EnergySources.cs" />
+    <Compile Include="Entity\Fuses.cs" />
+    <Compile Include="Entity\Generators.cs" />
+    <Compile Include="Entity\GeographicalRegion.cs" />
+    <Compile Include="Entity\GroundDisconnectors.cs" />
+    <Compile Include="Entity\Lines.cs" />
+    <Compile Include="Entity\Meters.cs" />
+    <Compile Include="Entity\Relays.cs" />
+    <Compile Include="Entity\SeriesCompensators.cs" />
+    <Compile Include="Entity\ShuntCompensators.cs" />
+    <Compile Include="Entity\SubGeographicalRegions.cs" />
+    <Compile Include="Entity\Substations.cs" />
+    <Compile Include="Entity\SurgeArresters.cs" />
+    <Compile Include="Entity\Towers.cs" />
+    <Compile Include="Entity\Transfomers.cs" />
+    <Compile Include="Entity\Voltages.cs" />
+    <Compile Include="Entity\VoltageTransformers.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

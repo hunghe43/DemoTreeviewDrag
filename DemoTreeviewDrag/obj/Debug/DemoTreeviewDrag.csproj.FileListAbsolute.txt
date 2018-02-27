@@ -16,3 +16,6 @@ C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreev
 C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\obj\Debug\DemoTreeviewDrag.Form1.resources
 C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\obj\Debug\DemoTreeviewDrag.Properties.Resources.resources
 C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\obj\Debug\DemoTreeviewDrag.csproj.GenerateResource.Cache
+C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\bin\Debug\TestDB.mdf
+C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\bin\Debug\TestDB_log.ldf
+C:\Users\HungNV\Documents\Visual Studio 2015\Projects\DemoTreeviewDrag\DemoTreeviewDrag\obj\Debug\DemoTreeviewDrag.FormProperties.resources

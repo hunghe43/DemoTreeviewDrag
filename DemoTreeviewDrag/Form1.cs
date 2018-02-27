@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using Microsoft.VisualBasic;
 
 namespace DemoTreeviewDrag
@@ -24,11 +18,9 @@ namespace DemoTreeviewDrag
         {
             InitializeComponent();
             TV1.DragDrop += new DragEventHandler(Drop);
-
             TV1.DragOver += new DragEventHandler(Over);
-
             TV1.MouseDown += new MouseEventHandler(Down);
-
+            TV1.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(NodeDoubleClick);
             //TV1.NodeMouseClick += new TreeNodeMouseClickEventHandler(NodeClick);
         }
 
@@ -76,7 +68,7 @@ namespace DemoTreeviewDrag
                                         NodeLines.Name = line._LineName;
 
                                         nodeLines.Nodes.Add(NodeLines);
-                                        //foreach(var )
+                                        //foreach (var tower in line.ACLineSegments)
 
                                     }
                                 }
@@ -96,25 +88,8 @@ namespace DemoTreeviewDrag
                         }
                     }
                 }
-
             }
-
-            //var node1 = TV1.Nodes.Add("node 1");
-            //var node2 = TV1.Nodes.Add("node 2");
-
-            //node1.Nodes.Add("child node A1");
-            //node1.Nodes.Add("child node A2");
-            //node1.Nodes.Add("child node C1");
-
-
-            //node2.Nodes.Add("child node D1");
-            //node2.Nodes.Add("child node E1");
-            //node2.Nodes.Add("child node F1");
-            //node2.Nodes.Add("child node G1");
-
-            //node1.Expand();
-            //node2.Expand();
-        }
+        }       
 
         private void Down(object sender, MouseEventArgs e)
         {
@@ -164,13 +139,13 @@ namespace DemoTreeviewDrag
             }
         }
 
-        private void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            node = ((TreeView)sender).SelectedNode;
-            point = new Point(MousePosition.X, MousePosition.Y);
+        //private void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+        //{
+        //    node = ((TreeView)sender).SelectedNode;
+        //    point = new Point(MousePosition.X, MousePosition.Y);
 
-            Cms.Show(point);
-        }
+        //    Cms.Show(point);
+        //}
 
         private void treeviewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -191,6 +166,49 @@ namespace DemoTreeviewDrag
         private void alterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             node.Text = Interaction.InputBox("digite o nome do node: ", "Alter node...", "Text");
+        }
+
+        private void NodeDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            node = ((TreeView)sender).SelectedNode;
+            getDataPropertiesNode(node);
+
+        }
+        private void getDataPropertiesNode(TreeNode treenode)
+        {
+            string[] row = new string[] { };
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.Name = "Path";
+
+            dataGridView1.ColumnCount = 3;
+            dataGridView1.Columns[0].Name = "Attributes";
+            dataGridView1.Columns[1].Name = "Types";
+            dataGridView1.Columns[2].Name = "Values";
+            dataGridView1.Columns.Add(link);
+
+            //dataGridView1.Columns[3].Name = "Path";
+            dataGridView1.Rows.Clear();
+
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(treenode.Tag))
+            {
+                string attribute = descriptor.Name;
+                string value = descriptor.GetValue(treenode.Tag).ToString();
+                string type = descriptor.PropertyType.ToString().Substring(7);
+                string pathParent = "";
+
+                if (treenode.Parent != null)
+                {
+                    pathParent = treenode.Parent.Text;
+                }
+                row = new string[] { attribute, type, value, pathParent };
+                dataGridView1.Rows.Add(row);
+            }
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            node = node.Parent;
+            getDataPropertiesNode(node);
         }
     }
 }
